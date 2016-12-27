@@ -1,22 +1,43 @@
-from django.conf.urls import include, url
-from django.contrib import admin
-from connection.views import goToForm, goToHome, addProjet
-from projects.views import goToProjet
-from profils.views import goToProfil
-from disponibilite.views import goToDispo
+from django.conf.urls import url
+from rest_framework.urlpatterns import format_suffix_patterns
+
+from . import views
+
+app_name= 'librecoach'
 
 urlpatterns = [
-    # Examples:
-    # url(r'^$', 'LibreCoach.views.home', name='home'),
-    # url(r'^blog/', include('blog.urls')),
+    url(r'^$', views.IndexView.as_view(), name='index'),
 
-    url(r'^admin/', admin.site.urls),
-    url(r'^index', goToForm, name='login'),
-    url(r'^home', goToHome),
-    url(r'^projet', goToProjet),
-    url(r'^profil', goToProfil),
-    url(r'^add/(\d{1})',addProjet),
-    url(r'^add/(\d{2})',addProjet),
-    url(r'^dispo', goToDispo),
+    url('^page/$',views.PageView.as_view(), name='page'),
 
+    url('^creercompte/$',views.UserFormView.as_view(), name='creer-compte'),
+
+    url('^login/$',views.LoginView.as_view(), name='login'),
+
+    #url('^contact/$',views.ContactView.contact, name='login'),
+
+    url(r'^client/(?P<pk>[0-9]+)/$', views.ClientView.as_view(), name='detail-client'),
+
+    url(r'^(?P<pk>[0-9]+)/$', views.DetailView.as_view(), name='detail-annonce'),
+
+    url(r'^compteclient/(?P<pk>[0-9]+)/$', views.CompteView.as_view(), name='compte-client'),
+    # / librecoach/annonce/ajouter/
+    url(r'annonce/ajouter/$', views.AnnonceCreate.as_view(), name='annonce-ajouter'),
+
+    # / librecoach/annonce/2/
+    url(r'annonce/(?P<pk>[0-9]+)/$', views.AnnonceUpdate.as_view(), name='annonce-modifier'),
+
+    # / librecoach/annonce/2/supprimer
+    url(r'annonce/(?P<pk>[0-9]+)/supprimer/$', views.AnnonceDelete.as_view(), name='annonce-supprimer'),
+
+    #JSON file
+    url(r'^stocks/', views.StockList.as_view()),
+
+    #USER AUTH URL
+    #url(r'^login/$',views.LoginView.as_view(), name='login'),
+    url(r'^accueil/$',views.IndexView.logout, name='accueil'),
+    #url(r'^loggedin/$',),
+    #url(r'^invalid/$',),
 ]
+
+urlpatterns = format_suffix_patterns(urlpatterns)

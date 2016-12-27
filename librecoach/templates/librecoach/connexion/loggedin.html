@@ -1,0 +1,8 @@
+<h3>Bonjour {{ user.username }} vous etes connecter!</h3>
+    <a href="{% url 'librecoach:index' %}">Se deconnecter</a>
+
+<ul>
+    {% for annonce in all_annonces %}
+    <li><a href="/librecoach/{{ annonce.id }}/">{{ annonce.titre_annonce }}</a></li>
+    {% endfor %}
+</ul>
