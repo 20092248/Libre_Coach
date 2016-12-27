@@ -11,7 +11,7 @@ urlpatterns = [
     # url(r'^blog/', include('blog.urls')),
 
     url(r'^admin/', admin.site.urls),
-    url(r'^index', goToForm, name='login'),
+    url(r'^$', goToForm, name='login'),
     url(r'^home', goToHome),
     url(r'^projet', goToProjet),
     url(r'^profil', goToProfil),
