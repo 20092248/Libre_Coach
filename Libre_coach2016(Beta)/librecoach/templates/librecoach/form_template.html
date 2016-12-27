@@ -1,0 +1,52 @@
+{% for field in form %}
+    <div>
+        <span>{{ field.errors }}</span>
+    </div>
+    <label>{{ field.label_tag }}</label>
+    <div>{{ field }}</div>
+{% endfor%}
+
+
+<!--
+<select id="id_user" name="user">
+<option value="" selected="selected">---------</option>
+<option value="1">Brady</option>
+<option value="2">mialala</option>
+</select>
+
+<h3>Disponibilité</h3>
+    <p>Lundi</p>
+    <select id="id_lundi" name="lundi" required="">
+    <option value="" selected="selected">---------</option>
+        <option value="MATIN">Le matin</option>
+        <option value="APRES-MIDI">L'apres-midi</option>
+        <option value="LA_JOURNEE">La journee</option>
+    </select>
+    <p>Mardi</p>
+    <select id="id_mardi" name="mardi" required="">
+    <option value="" selected="selected">---------</option>
+        <option value="MATIN">Le matin</option>
+        <option value="APRES-MIDI">L'apres-midi</option>
+        <option value="LA_JOURNEE">La journee</option>
+    </select>
+    <p>Mercredi</p>
+    <select id="id_mercredi" name="mercredi" required="">
+    <option value="" selected="selected">---------</option>
+        <option value="MATIN">Le matin</option>
+        <option value="APRES-MIDI">L'apres-midi</option>
+        <option value="LA_JOURNEE">La journee</option>
+    </select>
+    <p>Jeudi</p>
+    <select id="id_jeudi" name="lundi" required="">
+    <option value="" selected="selected">---------</option>
+        <option value="MATIN">Le matin</option>
+        <option value="APRES-MIDI">L'apres-midi</option>
+        <option value="LA_JOURNEE">La journee</option>
+    </select>
+    <p>Vendredi</p>
+    <select id="id_vendredi" name="vendredi" required="">
+    <option value="" selected="selected">---------</option>
+        <option value="MATIN">Le matin</option>
+        <option value="APRES-MIDI">L'apres-midi</option>
+        <option value="LA_JOURNEE">La journee</option>
+    </select>-->

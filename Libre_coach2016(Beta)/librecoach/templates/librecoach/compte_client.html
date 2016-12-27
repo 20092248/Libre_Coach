@@ -1,0 +1,17 @@
+<h1>{{ annonce_titre_descriptif }}</h1>
+<h3>{{ annonce.nom }}</h3>
+<h3>{{ annonce.prenom }}</h3>
+
+<h3>{{ annonce.email }}</h3>
+<h3>{{ annonce.telephone }}</h3>
+<h3>{{ annonce.pays }}</h3>
+<h3>{{ annonce.ville }}</h3>
+<h3>{{ annonce.code_postal }}</h3>
+<h3>{{ annonce.rubrique }}</h3>
+
+
+    {% for annonce in user.annonce_set.all %}
+       {{ annonce.rubrique }} - {{annonce.titre_annonce}}<br>
+    {% endfor %}
+
+
