@@ -54,9 +54,10 @@ class DetailView(generic.DetailView):
 
 class ClientView(generic.ListView):
 		model = User
+
 		template_name = 'librecoach/detail_client.html'
 		def get_queryset(self):
-			return Annonce.objects.filter(prenom='Brady')
+			return Annonce.objects.all()
 
 
 class PageView(generic.ListView):
@@ -89,10 +90,32 @@ class StockList(APIView):
 	def post(self):
 		pass
 
+class CoachView(DetailView):
+	form_class= Loginform
+	template_name = 'librecoach/connexion/coach_login.html'
+
+	# affichage formulaire vierge
+	def get(self, request):
+		form = self.form_class(None)
+		return render(request, self.template_name, {'form': form})
+
+	def post(self, request):
+		all_annonces = Annonce.objects.all()
+
+		form = Loginform(request.POST or None)
+		if form.is_valid():
+			username = form.cleaned_data.get("username")
+			password = form.cleaned_data.get("password")
+			user = authenticate(username=username, password=password)
+		login(request, user)
+		print(request.user.is_authenticated())
+
+		# redirect
+		return render(request, self.template_name, {"form": form, "all_annonces": all_annonces})
+
 class LoginView(generic.DetailView):
 	form_class = Loginform
 	template_name = 'librecoach/connexion/login.html'
-	template_name2 = 'librecoach/index.html'
 
 	# affichage formulaire vierge
 	def get(self, request):

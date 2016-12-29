@@ -52,30 +52,33 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
                     <li>
-                        <a href="#accueil">Accueil</a>
+                        <a href="{% url 'librecoach:index' %}#accueil">Accueil</a>
                     </li>
                     <li>
-                        <a href="#presentation">Présentation</a>
+                        <a href="{% url 'librecoach:index' %}#presentation">Présentation</a>
                     </li>
                     <li>
-                        <a href="#services">Services</a>
+                        <a href="{% url 'librecoach:index' %}#services">Services</a>
                     </li>
                     <li>
-                        <a href="#contact">Contact</a>
+                        <a href="{% url 'librecoach:index' %}#contact">Contact</a>
                     </li>
                     <li>
+                        {% if user.is_active%}
                         <div class="dropdown">
                           <button style="margin: 10px;" class="glyphicon glyphicon-menu-down btn btn-default dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 
                           </button>
                           <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
                             <li><a href="{% url 'librecoach:annonce-ajouter' %}">Ajouter une annonce</a></li>
+
                           </ul>
                         </div>
+                        {% endif %}
                     </li>
                     <li>
                         <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
-                        <a class="btn btn-primary" href="#" role="button" style="color:#ccc;margin-right: 10px;e">S'inscrire</a>
+                        <a class="btn btn-primary" href="{% url 'librecoach:creer-compte' %}" role="button" style="color:#ccc;margin-right: 10px;e">S'inscrire</a>
                     </li>
                     {% include 'librecoach/connexion/login.html' %}
                 </ul>

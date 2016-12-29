@@ -26,11 +26,9 @@ class Loginform(forms.Form):
         if username and password:
             user = authenticate(username=username, password=password)
             if not user:
-                raise forms.ValidationError("L'utilisateur n'existe pas")
+                raise ValueError("L'utilisateur n'existe pas")
             if not user.check_password(password):
-                raise forms.ValidationError
-            if not user.is_active:
-                raise forms.ValidationError("L'utilisateur n'est pas encore activé.")
+                raise ValueError("Mot de passe incorrect!")
         return super(Loginform, self).clean(*args, **kwargs)
 
 class Contactform(forms.Form):

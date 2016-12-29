@@ -1,17 +1,66 @@
-{{user.id}}
-{{annonce.id}}
+    {% load static %}
+    {% include 'librecoach/corp/header.html' %}
 
-<ul><p>Toutes les annonces non prise en charge :</p>
+    <!-- Header -->
+    <a name="accueil"></a>
+    <div class="intro-header" style="background:bisque">
+        <div class="container">
 
-    {% for annonce in object_list %}
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="intro-message-page">
+                        <h1 style="padding-top: 25px;">{{user.username}}<span style="font-size:25px"><i>({{user.last_name}} {{user.first_name}})</i></span></h1>
+                    </div>
+                </div>
+            </div>
 
-    <li><a href="/librecoach/{{ annonce.id }}/">{{ annonce.titre_annonce }}</a></li>
-    <form action="{% url 'librecoach:annonce-supprimer' annonce.id %}" method="post">
-        {% csrf_token %}
-        <input type="hidden" name="annonce_id" value="{{ annonce.id }}">
-        <button type="submit">supprimer</button>
-    </form>
+        </div>
+        <!-- /.container -->
+    </div>
 
-    {% endfor %}
-</ul>
+    <a  name="inscription"></a>
+    <div class="content-section-a">
+
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-sm-4">
+                    <hr class="section-heading-spacer">
+                    <div class="clearfix"></div>
+                    <h2 class="section-heading">Information:<br>Detail client</h2>
+                    <p class="lead">Nom : {{ user.first_name }}</p>
+                    <p class="lead">Prenom : {{ user.last_name }}</p>
+                    <p class="lead">Email : {{ user.email }}</p>
+
+                </div>
+                <div class="col-lg-8 col-sm-6">
+                    <hr class="section-heading-spacer">
+                    <div class="clearfix"></div>
+                    <h2 class="section-heading">Annonces postés par {{user.username}}</h2>
+
+                    <ul>
+
+                        <li style="list-style: none;padding:2px">pris en charge<span class="col-lg-10 col-sm-10">Titre</span></li>
+                        {% for annonce in user.annonce_set.all %}
+                        <li style="list-style: none;padding:2px"><a class="col-lg-6 col-sm-6" href="/librecoach/{{ annonce.id }}/">{{ annonce.titre_annonce }}</a>
+                        <a style="margin: 0px 15px 0px 15px;" class="btn btn-default" href="{% url 'librecoach:annonce-modifier' annonce.id %}">modifier</a>
+                        <form style="display:inline" action="{% url 'librecoach:annonce-supprimer' annonce.id %}" method="post">
+                            {% csrf_token %}
+                            <input type="hidden" name="annonce_id" value="{{ annonce.id }}">
+                            <button class="btn btn-default" type="submit">supprimer</button>
+                        </form><span style="padding-left:8%;">{{annonce.pris_en_charge}}</span>
+                        </li>
+
+                        {% endfor %}
+                    </ul>
+
+                </div>
+            </div>
+
+        </div>
+        <!-- /.container -->
+
+    </div>
+    <!-- /.content-section-a -->
+
+    {% include 'librecoach/corp/footer.html' %}
 

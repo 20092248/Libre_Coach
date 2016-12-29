@@ -1,12 +1,54 @@
-<h3>Inscription nouveau compte</h3>
-{% if error_message %}
-    <p><strong>{{ error_message }}</strong></p>
-{% endif %}
-<form role="" action="" method="post">
-    {% csrf_token %}
-    {% include 'librecoach/form_template.html' %}
-    <li role="separator" class="divider"></li>
-    <div>
-        <button type="submit">ajouter compte</button>
+    {% load static %}
+    {% include 'librecoach/corp/header.html' %}
+
+    <!-- Header -->
+    <a name="accueil"></a>
+    <div class="intro-header" style="background:bisque">
+        <div class="container">
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="intro-message-page">
+                        <h1 style="padding-top: 25px;">Inscription</h1>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!-- /.container -->
+
     </div>
-</form>
+
+    <a  name="inscription"></a>
+    <div class="content-section-a">
+
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-sm-8">
+                    <hr class="section-heading-spacer">
+                    <div class="clearfix"></div>
+
+                    <h2 class="section-heading">Créer votre compte</h2>
+                    {% if error_message %}
+                        <p><strong>{{ error_message }}</strong></p>
+                    {% endif %}
+                    <div class="inscription-form" style="margin-left: 100px;">
+                        <form role="" action="" method="post">
+                            {% csrf_token %}
+                            {% include 'librecoach/form_template.html' %}
+                            <br>
+                            <div>
+                                <button class="btn btn-default" type="submit">Ajouter compte</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!-- /.container -->
+
+    </div>
+    <!-- /.content-section-a -->
+
+    {% include 'librecoach/corp/footer.html' %}

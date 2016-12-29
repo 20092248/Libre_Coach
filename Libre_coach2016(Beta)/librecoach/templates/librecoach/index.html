@@ -116,7 +116,7 @@
 
     {% include 'librecoach/corp/footer.html' %}
 
- <ul><p>Toutes les annonces non prise en charge :</p>
+ <!--<ul><p>Toutes les annonces non prise en charge :</p>
     {% for annonce in annonces_client %}
     <li><a href="/librecoach/{{ annonce.id }}/">{{ annonce.titre_annonce }}</a></li>
     <form action="{% url 'librecoach:annonce-supprimer' annonce.id %}" method="post">
@@ -125,4 +125,4 @@
         <button type="submit">supprimer</button>
     </form>
     {% endfor %}
-</ul>
+</ul>-->

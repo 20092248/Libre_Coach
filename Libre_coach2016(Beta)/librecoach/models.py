@@ -18,6 +18,15 @@ journee = (
     ('LA_JOURNEE', 'la_journee'),
 )
 
+class Coach(models.Model):
+	nom_coach = models.CharField(max_length=30)
+	prenom_coach = models.CharField(max_length=30)
+	specialiste = models.CharField(max_length=30, choices=type_rubrique)
+	coach_image = models.CharField(max_length=1000, default='---------')
+
+	def __str__(self):
+		return self.nom_coach +' + '+ self.prenom_coach
+
 class Annonce(models.Model):
 
 	username = models.CharField(max_length=30, default='-------')
@@ -40,22 +49,13 @@ class Annonce(models.Model):
 	jeudi = models.CharField(max_length=30, choices=journee, default='---------')
 	vendredi = models.CharField(max_length=30, choices=journee, default='---------')
 	user = models.ForeignKey(User, blank=True, null=True)
+	coach = models.ForeignKey(Coach, blank=True, null=True)
 
 	def get_absolute_url(self):
 		return reverse('librecoach:detail-annonce',kwargs={'pk': self.pk})
 
 	def __str__(self):
 		return self.titre_annonce
-
-class Coach(models.Model):
-	nom_coach = models.CharField(max_length=30)
-	prenom_coach = models.CharField(max_length=30)
-	specialiste = models.CharField(max_length=20)
-	demande_rdv = models.CharField(max_length=30)
-
-	def __str__(self):
-		return self.nom_coach +' + '+ self.prenom_coach
-
 
 class Stock(models.Model):
 	ticket = models.CharField(max_length=20)
