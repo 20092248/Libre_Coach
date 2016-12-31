@@ -29,6 +29,9 @@ urlpatterns = [
     # / librecoach/annonce/2/
     url(r'annonce/(?P<pk>[0-9]+)/$', views.AnnonceUpdate.as_view(), name='annonce-modifier'),
 
+# / librecoach/annonce/coach/2/
+    url(r'annonce/coach/(?P<pk>[0-9]+)/$', views.AnnonceUpdate2.as_view(), name='annonce-coach-modifier'),
+
     # / librecoach/annonce/2/supprimer
     url(r'annonce/(?P<pk>[0-9]+)/supprimer/$', views.AnnonceDelete.as_view(), name='annonce-supprimer'),
 

@@ -71,11 +71,15 @@ class CompteView(generic.DetailView):
 
 class AnnonceCreate(CreateView):
 	model = Annonce
-	fields = ['nom','prenom','email','telephone','pays','ville','code_postal','rubrique','titre_annonce','descriptif_annonce','user']
+	fields = ['username','nom','prenom','email','telephone','pays','ville','code_postal','rubrique','titre_annonce','descriptif_annonce','lundi','mardi','mercredi','jeudi','vendredi','user']
 
 class AnnonceUpdate(UpdateView):
 	model = Annonce
-	fields = '__all__'
+	fields = ['nom','prenom','email','telephone','pays','ville','code_postal','rubrique','titre_annonce','descriptif_annonce','lundi','mardi','mercredi','jeudi','vendredi']
+
+class AnnonceUpdate2(UpdateView):
+	model = Annonce
+	fields = ['pris_en_charge']
 
 class AnnonceDelete(DeleteView):
 	model = Annonce
@@ -93,6 +97,7 @@ class StockList(APIView):
 class CoachView(DetailView):
 	form_class= Loginform
 	template_name = 'librecoach/connexion/coach_login.html'
+	template_name2 = 'librecoach/connexion/detail_coach.html'
 
 	# affichage formulaire vierge
 	def get(self, request):
@@ -111,7 +116,7 @@ class CoachView(DetailView):
 		print(request.user.is_authenticated())
 
 		# redirect
-		return render(request, self.template_name, {"form": form, "all_annonces": all_annonces})
+		return render(request, self.template_name2, {"form": form, "all_annonces": all_annonces})
 
 class LoginView(generic.DetailView):
 	form_class = Loginform

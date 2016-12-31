@@ -22,6 +22,11 @@
                             <li>
                                 <a href="#contact" class="btn btn-default btn-lg"><i class="glyphicon glyphicon-envelope"></i> <span class="network-name">Contact</span></a>
                             </li>
+                            {% if user.is_active %}
+                            <li>
+                                <a href="client/{{ user.id }}/" class="btn btn-default btn-lg"><i class="glyphicon glyphicon-user"></i> <span class="network-name">Voir profil</span></a>
+                            </li>
+                            {% endif %}
                         </ul>
                     </div>
                 </div>

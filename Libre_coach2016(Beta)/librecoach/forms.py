@@ -1,4 +1,5 @@
 from django.contrib.admin import widgets
+from django.contrib.admin.views.decorators import staff_member_required
 from django.contrib.auth import authenticate
 from django.contrib.auth.models import User
 from django import forms
@@ -26,7 +27,7 @@ class Loginform(forms.Form):
         if username and password:
             user = authenticate(username=username, password=password)
             if not user:
-                raise ValueError("L'utilisateur n'existe pas")
+                raise ValueError("L'utilisateur n'existe pas.")
             if not user.check_password(password):
                 raise ValueError("Mot de passe incorrect!")
         return super(Loginform, self).clean(*args, **kwargs)

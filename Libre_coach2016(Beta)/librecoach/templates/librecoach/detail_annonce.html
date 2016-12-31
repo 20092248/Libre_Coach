@@ -1,13 +1,86 @@
-<h1>{{ annonce_titre_descriptif }}</h1>
-<h3>{{ annonce.nom }}</h3>
-<h3>{{ annonce.prenom }}</h3>
+    {% load static %}
+    {% include 'librecoach/corp/header.html' %}
 
-<h3>{{ annonce.email }}</h3>
-<h3>{{ annonce.telephone }}</h3>
-<h3>{{ annonce.pays }}</h3>
-<h3>{{ annonce.ville }}</h3>
-<h3>{{ annonce.code_postal }}</h3>
-<h3>{{ annonce.rubrique }}</h3>
-<h3>{{ annonce.titre_annonce }}</h3>
-<h3>{{ annonce.descriptif_annonce }}</h3>
-<h3>{{ annonce.disponibilite }}</h3>
+    <!-- Header -->
+    <a name="accueil"></a>
+    <div class="intro-header" style="background:bisque">
+        <div class="container">
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="intro-message-page">
+                        <h1 style="padding-top: 25px;">Information de l'annonce</h1>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!-- /.container -->
+    </div>
+    {% if user.is_staff %}
+    <a  name="inscription"></a>
+    <div class="content-section-a">
+
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-5 col-sm-5">
+                    <h2 class="section-heading">Information:<br>Profil de l'annonceur</h2>
+                    <p class="lead">Pseudo : {{ annonce.username }}</p>
+                    <p class="lead">Nom : {{ annonce.nom }}</p>
+                    <p class="lead">Prenom : {{ annonce.prenom }}</p>
+                    <p class="lead">Email : {{ annonce.email }}</p>
+                    <p class="lead">Téléphone : {{ annonce.telephone }}</p>
+                    <p class="lead">Pays : {{ annonce.pays }}</p>
+                    <p class="lead">Ville : {{ annonce.ville }}</p>
+                    <p class="lead">Code postal : {{ annonce.code_postal }}</p>
+                </div>
+                <div class="col-lg-6 col-sm-6">
+                    <h2 class="section-heading">Detail de l'annonce</h2>
+
+                    <p class="lead">Titre de l'annonce : {{ annonce.titre_annonce }}</p>
+                    <p class="lead">Rubrique : {{ user.coach.specialiste }}</p>
+                    <p class="lead">Titre : {{ annonce.titre_annonce }}</p>
+                    <p class="lead">Descriptif de l'annonce : <br><br>{{ annonce.descriptif_annonce }}</p>
+                    <div class="panel panel-default">
+                      <!-- Default panel contents -->
+                      <div class="panel-heading">Disponibilité</div>
+
+                      <!-- Table -->
+                      <table class="table">
+                          <tr><td>Lundi</td><td>{{annonce.lundi}}</td></tr>
+                          <tr><td>Mardi</td><td>{{annonce.mardi}}</td></tr>
+                          <tr><td>Mercredi</td><td>{{annonce.mercredi}}</td></tr>
+                          <tr><td>Jeudi</td><td>{{annonce.jeudi}}</td></tr>
+                          <tr><td>Vendredi</td><td>{{annonce.vendredi}}</td></tr>
+                      </table>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+        <!-- /.container -->
+
+    </div>
+    <!-- /.content-section-a -->
+    {% else %}
+    <a  name="inscription"></a>
+    <div class="content-section-a">
+
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-sm-8">
+                    <p>Cette page n'est reservé qu'à l'administrateur et aux membres personnels du site.</p><br>
+                    <a href="{% url 'librecoach:index' %}">retour sur la page d'accueil.</a>
+                </div>
+            </div>
+
+        </div>
+        <!-- /.container -->
+
+    </div>
+    <!-- /.content-section-a -->
+
+    {% endif %}
+
+    {% include 'librecoach/corp/footer.html' %}

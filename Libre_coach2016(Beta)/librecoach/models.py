@@ -1,5 +1,5 @@
 from datetime import datetime
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, AbstractUser
 from django.db import models
 from django.core.urlresolvers import reverse
 
@@ -19,17 +19,16 @@ journee = (
 )
 
 class Coach(models.Model):
-	nom_coach = models.CharField(max_length=30)
-	prenom_coach = models.CharField(max_length=30)
+	user = models.OneToOneField(User, on_delete=models.CASCADE, default='inconnu')
 	specialiste = models.CharField(max_length=30, choices=type_rubrique)
-	coach_image = models.CharField(max_length=1000, default='---------')
+	coach_image = models.CharField(max_length=1000, default='img')
 
 	def __str__(self):
-		return self.nom_coach +' + '+ self.prenom_coach
+		return self.specialiste
 
 class Annonce(models.Model):
 
-	username = models.CharField(max_length=30, default='-------')
+	username = models.CharField(max_length=30, default='00')
 	nom = models.CharField(max_length=30)
 	prenom = models.CharField(max_length=30)
 	email = models.CharField(max_length=30)
@@ -37,19 +36,22 @@ class Annonce(models.Model):
 	pays = models.CharField(max_length=30)
 	ville = models.CharField(max_length=30)
 	code_postal = models.CharField(max_length=30)
-	rubrique = models.CharField(max_length=30, choices=type_rubrique)
+
+	#user qui se cache dans rubrique
+	rubrique = models.ForeignKey(Coach, blank=True, null=True)
+
 	titre_annonce = models.CharField(max_length=100)
 	descriptif_annonce = models.TextField()
 	date_depot = models.DateTimeField(default=datetime.now())
 	pris_en_charge = models.BooleanField(default=False)
 
-	lundi = models.CharField(max_length=30, choices=journee, default='---------')
-	mardi = models.CharField(max_length=30, choices=journee, default='---------')
-	mercredi = models.CharField(max_length=30, choices=journee, default='---------')
-	jeudi = models.CharField(max_length=30, choices=journee, default='---------')
-	vendredi = models.CharField(max_length=30, choices=journee, default='---------')
+	lundi = models.CharField(max_length=30, choices=journee, default='00')
+	mardi = models.CharField(max_length=30, choices=journee, default='00')
+	mercredi = models.CharField(max_length=30, choices=journee, default='00')
+	jeudi = models.CharField(max_length=30, choices=journee, default='00')
+	vendredi = models.CharField(max_length=30, choices=journee, default='00')
 	user = models.ForeignKey(User, blank=True, null=True)
-	coach = models.ForeignKey(Coach, blank=True, null=True)
+
 
 	def get_absolute_url(self):
 		return reverse('librecoach:detail-annonce',kwargs={'pk': self.pk})

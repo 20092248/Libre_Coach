@@ -1,18 +1,18 @@
 <li>
     {% if user.is_active%}
     <div class="dropdown">
-      <button style="padding-top: 15px;padding-bottom: 15px;font-weight: bold;" class="btn btn-success dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      <button style="padding-top: 15px;padding-bottom: 15px;font-weight: bold;width:99%" class="btn btn-success dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         {{ user.username }}
         <span class="caret"></span>
       </button>
         <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
-            <li><a href="client/{{ user.id }}/">Voir profil</a></li>
+            <li><a href="{% url 'librecoach:detail-client' user.id %}">Voir profil</a></li>
             <li><a href="{% url 'librecoach:accueil' %}">Se deconnecter</a></li>
         </ul>
     </div>
     {% else %}
     <div class="dropdown">
-      <button style="padding-top: 15px;padding-bottom: 15px;" class="btn btn-success dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      <button style="padding-top: 15px;padding-bottom: 15px;width:99%" class="btn btn-success dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         Se Connecter
         <span class="caret"></span>
       </button>

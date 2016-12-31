@@ -9,10 +9,13 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    	<!-- Favicon -->
+    <!-- JQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+    <!-- Favicon -->
 	<link rel="shortcut icon" href="{% static 'librecoach/images/favicon_LC.ico' %}">
 
-    <title>LibreCoach - Accueil</title>
+    <title>{% block title %}LibreCoach{% endblock %}</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="{% static 'librecoach/css/bootstrap.min.css' %}" rel="stylesheet">
@@ -46,7 +49,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand topnav" href="#" style="font-size: 30px;">Libre <span style="color:#ffc682">Coach</span></a>
+                <a class="navbar-brand topnav" href="{% url 'librecoach:index' %}" style="font-size: 30px;">Libre <span style="color:#ffc682">Coach</span>{% if user.is_active %}<span style="margin-left:20px;font-size:15px"><i>- Bonjour {{user.username}}</i></span>{% endif %}</a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
