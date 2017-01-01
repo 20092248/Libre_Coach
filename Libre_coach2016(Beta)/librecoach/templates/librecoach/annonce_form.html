@@ -27,7 +27,7 @@
                 <div class="col-lg-8 col-sm-8">
                     <hr class="section-heading-spacer">
                     <div class="clearfix"></div>
-
+                    {% if user.is_active %}
                     <h2 class="section-heading">Gérer une annonce</h2>
                     {% if error_message %}
                         <p><strong>{{ error_message }}</strong></p>
@@ -35,11 +35,17 @@
                     <div class="inscription-form" style="margin-left: 100px;">
                         <form class="" action="" method="post" enctype="multipart/form-data">
                             {% csrf_token %}
-                            {% include 'librecoach/form_template.html' %}
+                            {% include 'librecoach/form_template_annonce.html' %}
                             <br>
                             <button class="btn btn-default" type="submit">Envoyer</button>
                         </form>
                     </div>
+                    {% else %}
+                    <h2 class="section-heading">Vous devez vous s'inscrire ou vous connecter pour ajouter une annonce.</h2>
+                    <div class="attention" style="margin-left: 100px;">
+                        <p style="font-size:25px;"><a href="{% url 'librecoach:creer-compte' %}">S'inscrire</a></p>
+                    </div>
+                    {% endif %}
                 </div>
             </div>
 

@@ -26,6 +26,9 @@
                             <li>
                                 <a href="client/{{ user.id }}/" class="btn btn-default btn-lg"><i class="glyphicon glyphicon-user"></i> <span class="network-name">Voir profil</span></a>
                             </li>
+                            <li>
+                                <a href="{% url 'librecoach:annonce-ajouter' %}" class="btn btn-default btn-lg"><i class="glyphicon glyphicon-plus"></i> <span class="network-name">Ajouter une annonce</span></a>
+                            </li>
                             {% endif %}
                         </ul>
                     </div>

@@ -1,6 +1,9 @@
     {% load static %}
     {% include 'librecoach/corp/header.html' %}
 
+    {% if user.is_staff %}
+    {% include 'librecoach/connexion/detail_coach.html' %}
+    {% else %}
     <!-- Header -->
     <a name="accueil"></a>
     <div class="intro-header" style="background:bisque">
@@ -41,5 +44,6 @@
 
     </div>
     <!-- /.content-section-a -->
+    {% endif %}
 
     {% include 'librecoach/corp/footer.html' %}
