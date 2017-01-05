@@ -4,8 +4,8 @@ from rest_framework.response import Response
 
 from SiteWeb import settings
 from librecoach import models
-from librecoach.models import Stock, Annonce, User
-from librecoach.serializers import StockSerializer
+from librecoach.models import Stock, Annonce, User, Coach
+from librecoach.serializers import AnnonceSerializer, UserSerializer, CoachSerializer
 from django.shortcuts import render,redirect
 from django.contrib.auth import authenticate, login
 from django.views.generic import View
@@ -85,10 +85,28 @@ class AnnonceDelete(DeleteView):
 	model = Annonce
 	success_url = reverse_lazy('librecoach:index')
 
-class StockList(APIView):
+class AnnonceList(APIView):
 	def get(self, request):
-		stocks = Stock.objects.all()
-		serializer = StockSerializer(stocks, many=True)
+		a = Annonce.objects.all()
+		serializer = AnnonceSerializer(a, many=True)
+		return Response(serializer.data)
+
+	def post(self):
+		pass
+
+class UserList(APIView):
+	def get(self, request):
+		u = User.objects.all()
+		serializer = UserSerializer(u, many=True)
+		return Response(serializer.data)
+
+	def post(self):
+		pass
+
+class CoachList(APIView):
+	def get(self, request):
+		c = Coach.objects.all()
+		serializer = CoachSerializer(c, many=True)
 		return Response(serializer.data)
 
 	def post(self):

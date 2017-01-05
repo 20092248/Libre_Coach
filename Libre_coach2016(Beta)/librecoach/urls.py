@@ -36,7 +36,9 @@ urlpatterns = [
     url(r'annonce/(?P<pk>[0-9]+)/supprimer/$', views.AnnonceDelete.as_view(), name='annonce-supprimer'),
 
     #JSON file
-    url(r'^stocks/', views.StockList.as_view()),
+    url(r'^JSONannonce/', views.AnnonceList.as_view()),
+    url(r'^JSONuser/', views.UserList.as_view()),
+    url(r'^JSONcoach/', views.CoachList.as_view()),
 
     #USER AUTH URL
     #url(r'^login/$',views.LoginView.as_view(), name='login'),
