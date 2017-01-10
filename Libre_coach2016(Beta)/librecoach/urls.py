@@ -35,7 +35,7 @@ urlpatterns = [
     url(r'coach/annonce/(?P<pk>[0-9]+)/supprimer/$', views.AnnonceDelete2.as_view(), name='annonce-supprimer2'),
 
     # ____________________administrateur___________________#
-    url('^administrateur/$',views.IndexAdm.as_view(), name='page'),
+    url('^administrateur/$',views.IndexAdm.as_view(), name='administration'),
     url('^administrateur/coach/$', views.CoachFormView.as_view(success_url='../'), name='admin-coach'),
     url('^administrateur/client/$', views.UserFormViewAdm.as_view(), name='admin-client'),
 
