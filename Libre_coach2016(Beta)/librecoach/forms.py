@@ -12,6 +12,14 @@ class CreateAccountform(forms.ModelForm):
         fields = ['username','first_name','last_name','email','password','date_joined']
         #fields = '__all__'
 
+class CreateAccountformAdm(forms.ModelForm):
+    password = forms.CharField(widget=forms.PasswordInput)
+
+    class Meta:
+        model = User
+        fields = ['username', 'first_name', 'last_name', 'email', 'password','is_staff','is_active','is_superuser','date_joined']
+        #fields = '__all__'
+
 class Loginform(forms.Form):
 
     username = forms.CharField()

@@ -10,7 +10,7 @@ from django.shortcuts import render,redirect
 from django.contrib.auth import authenticate, login
 from django.views.generic import View
 from django.views import generic
-from .forms import CreateAccountform,Loginform, Contactform
+from .forms import CreateAccountform,Loginform, CreateAccountformAdm
 from django import forms
 from django.shortcuts import render, render_to_response
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
@@ -54,15 +54,14 @@ class DetailView(generic.DetailView):
 
 class ClientView(generic.ListView):
 		model = User
-
 		template_name = 'librecoach/detail_client.html'
 		def get_queryset(self):
 			return Annonce.objects.all()
 
 
-class PageView(generic.ListView):
+class IndexAdm(generic.ListView):
 		model = Annonce
-		template_name = 'librecoach/page.html'
+		template_name = 'librecoach/administrateur.html'
 
 class CompteView(generic.DetailView):
 		model = User
@@ -83,6 +82,12 @@ class AnnonceUpdate2(UpdateView):
 
 class AnnonceDelete(DeleteView):
 	model = Annonce
+	u = Annonce.objects.all()
+	def get_success_url(self):
+		return reverse_lazy('librecoach:index')
+
+class AnnonceDelete2(DeleteView):
+	model = Annonce
 	success_url = reverse_lazy('librecoach:index')
 
 class AnnonceList(APIView):
@@ -93,7 +98,6 @@ class AnnonceList(APIView):
 
 	def post(self):
 		pass
-
 class UserList(APIView):
 	def get(self, request):
 		u = User.objects.all()
@@ -102,7 +106,6 @@ class UserList(APIView):
 
 	def post(self):
 		pass
-
 class CoachList(APIView):
 	def get(self, request):
 		c = Coach.objects.all()
@@ -194,3 +197,51 @@ class UserFormView(View):
 					return redirect('librecoach:index')
 
 		return render(request, self.template_name, {'form': form})
+
+class UserFormViewAdm(View):
+	form_class = CreateAccountformAdm
+	template_name = 'librecoach/registration_form.html'
+
+	#affichage formulaire vierge
+	def get(self, request):
+		form = self.form_class(None)
+		return render(request, self.template_name, {'form':form})
+
+	# process form data
+	def post(self, request):
+		form = self.form_class(request.POST)
+
+		if form.is_valid():
+
+			user = form.save(commit=False)
+
+			#cleaned (normalized) data
+			username = form.cleaned_data['username']
+			password = form.cleaned_data['password']
+			first_name = form.cleaned_data['first_name']
+			last_name = form.cleaned_data['last_name']
+			user.set_password(password)
+			user.save()
+
+			#return si tout est okay
+			user = authenticate(username=username,password=password,first_name=first_name,last_name=last_name)
+
+			if user is not None:
+
+				if user.is_active:
+					login(request, user)
+					return redirect('librecoach:admin-coach')
+
+		return render(request, self.template_name, {'form': form})
+
+class CoachFormView(CreateView):
+	model = Coach
+	fields = ['user','specialiste','coach_image']
+
+class UpdateCoachFormView(UpdateView):
+	model = Coach
+	fields = '__all__'
+
+class DeleteCoachFormView(DeleteView):
+	model = Coach
+	success_url = reverse_lazy('librecoach:index')

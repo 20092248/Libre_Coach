@@ -77,12 +77,13 @@
 
                           </ul>
                         </div>
-                        {% endif %}
+                        {% else %}
                     </li>
                     <li>
                         <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
                         <a class="btn btn-primary" href="{% url 'librecoach:creer-compte' %}" role="button" style="color:#ccc;margin-right: 10px;e">S'inscrire</a>
                     </li>
+                        {% endif %}
                     {% include 'librecoach/connexion/login.html' %}
                 </ul>
             </div>

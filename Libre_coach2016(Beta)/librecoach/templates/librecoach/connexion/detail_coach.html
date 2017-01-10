@@ -25,7 +25,7 @@
             <div class="row">
                 <div class="col-lg-4 col-sm-4">
                     <h2 class="section-heading">Information:<br>Detail coach</h2>
-                    <img style="width:200px;height:200px" src="{{user.coach.coach_image}}" alt="..." class="img-thumbnail"><br>
+                    <img style="width:200px;height:200px" src="{{user.coach.coach_image.url}}" alt="..." class="img-thumbnail"><br>
                     <br><p class="lead">Nom : {{ user.first_name }}</p>
                     <p class="lead">Prenom : {{ user.last_name }}</p>
                     <p class="lead">Email : {{ user.email }}</p>
@@ -39,7 +39,7 @@
                         <!-- remplacer "user.caoch.annonce_set.all" par "all_annonces" pour que le coach puisse voir toutes les rubriques-->
                         <li style="list-style: none;padding:2px"><a class="col-lg-6 col-sm-6" href="/librecoach/{{ annonce.id }}/">{{ annonce.titre_annonce }}</a>
                         <a style="margin: 0px 15px 0px 15px;" class="btn btn-default" href="{% url 'librecoach:annonce-coach-modifier' annonce.id %}">modifier</a>
-                        <form style="display:inline" action="{% url 'librecoach:annonce-supprimer' annonce.id %}" method="post">
+                        <form style="display:inline" action="{% url 'librecoach:annonce-supprimer2' annonce.id %}" method="post">
                             {% csrf_token %}
                             <input type="hidden" name="annonce_id" value="{{ annonce.id }}">
                             <button onclick="return confirm('Etes vous sure de supprimer l\'annonce \'{{annonce.titre_annonce}}\'?')" class="btn btn-default" type="submit">supprimer</button>

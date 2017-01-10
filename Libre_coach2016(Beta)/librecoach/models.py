@@ -21,7 +21,7 @@ journee = (
 class Coach(models.Model):
 	user = models.OneToOneField(User, on_delete=models.CASCADE, default='inconnu')
 	specialiste = models.CharField(max_length=30, choices=type_rubrique)
-	coach_image = models.CharField(max_length=1000, default='http://cdn.mysitemyway.com/etc-mysitemyway/icons/legacy-previews/icons/matte-grey-square-icons-alphanumeric/118529-matte-grey-square-icon-alphanumeric-plus-sign-simple.png')
+	coach_image = models.FileField()
 
 	def __str__(self):
 		return self.specialiste
