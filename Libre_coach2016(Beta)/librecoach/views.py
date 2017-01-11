@@ -1,4 +1,5 @@
 from django.core.mail import send_mail
+from django.views.generic import TemplateView
 from rest_framework.views import APIView
 from rest_framework.response import Response
 
@@ -52,6 +53,9 @@ class DetailView(generic.DetailView):
 		model = Annonce
 		template_name = 'librecoach/detail_annonce.html'
 
+class FaqView(TemplateView):
+		template_name = 'librecoach/faq.html'
+
 class ClientView(generic.ListView):
 		model = User
 		template_name = 'librecoach/detail_client.html'
@@ -62,6 +66,9 @@ class ClientView(generic.ListView):
 class IndexAdm(generic.ListView):
 		model = Annonce
 		template_name = 'librecoach/administrateur.html'
+
+		def get_queryset(self):
+			return Coach.objects.all()
 
 class CompteView(generic.DetailView):
 		model = User
@@ -244,4 +251,20 @@ class UpdateCoachFormView(UpdateView):
 
 class DeleteCoachFormView(DeleteView):
 	model = Coach
-	success_url = reverse_lazy('librecoach:index')
+	success_url = '../../../'
+
+class ClientListView(generic.ListView):
+		model = User
+		template_name = 'librecoach/user_list.html'
+		def get_queryset(self):
+			return User.objects.filter(is_staff='False')
+
+class UpdateClientFormView(UpdateView):
+	model = User
+	template_name = 'librecoach/user_form.html'
+	fields = '__all__'
+	success_url = '../liste/'
+
+class DeleteClientFormView(DeleteView):
+	model = User
+	success_url = '../../../'

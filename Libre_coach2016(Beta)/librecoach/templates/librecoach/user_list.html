@@ -29,17 +29,16 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-10 col-sm-10">
-                    <a class="btn btn-default btn-lg" href="client">Creer un coach</a> - <a class="btn btn-default btn-lg" href="client/liste">Voir les clients</a><br><br>
-                    <p>Liste des coachs :</p>
+                    <h2>Liste des clients et coachs :</h2>
 
                     <ul>
-                        {% for coach in object_list %}
-                        <li style="list-style: none;padding:2px"><a class="col-lg-6 col-sm-6" href="{{coach.id}}">{{ coach.user }}</a>
-                        <a style="margin: 0px 15px 0px 15px;" class="btn btn-default" href="{% url 'librecoach:coach-modifier' coach.id %}">modifier</a>
-                        <form style="display:inline" action="{% url 'librecoach:coach-supprimer' coach.id %}" method="post">
+                        {% for user in object_list %}
+                        <li style="list-style: none;padding:2px"><a class="col-lg-6 col-sm-6" href="{{user.id}}">{{ user.username }}</a>
+                        <a style="margin: 0px 15px 0px 15px;" class="btn btn-default" href="{% url 'librecoach:client-modifier' user.id %}">modifier</a>
+                        <form style="display:inline" action="{% url 'librecoach:client-supprimer' user.id %}" method="post">
                             {% csrf_token %}
-                            <input type="hidden" name="delete_id" value="{{ coach.id }}">
-                            <button onclick="return confirm('Etes vous sure de supprimer le coach \'{{coach.user}}\'?')" class="btn btn-default" type="submit">supprimer</button>
+                            <input type="hidden" name="delete_id" value="{{ user.id }}">
+                            <button onclick="return confirm('Etes vous sure de supprimer le client \'{{user.username}}\'?')" class="btn btn-default" type="submit">supprimer</button>
                         </form>
                         </li>
                         {% endfor %}

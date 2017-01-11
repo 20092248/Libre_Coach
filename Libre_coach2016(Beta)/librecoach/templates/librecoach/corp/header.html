@@ -67,6 +67,9 @@
                         <a href="{% url 'librecoach:index' %}#contact">Contact</a>
                     </li>
                     <li>
+                        <a href="{% url 'librecoach:faq' %}">FAQ</a>
+                    </li>
+                    <li>
                         {% if user.is_active%}
                         <div class="dropdown">
                           <button style="margin: 10px;" class="glyphicon glyphicon-menu-down btn btn-default dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
