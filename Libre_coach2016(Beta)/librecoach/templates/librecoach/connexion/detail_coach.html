@@ -33,20 +33,22 @@
                 <div class="col-lg-8 col-sm-6">
                     <h2 class="section-heading">Annonces type : {{user.coach.specialiste}}</h2>
 
-                    <ul>
-                        <li style="list-style: none;padding:2px">pris en charge<span class="col-lg-10 col-sm-10">Titre</span></li>
-                        {% for annonce in user.coach.annonce_set.all %}
-                        <!-- remplacer "user.caoch.annonce_set.all" par "all_annonces" pour que le coach puisse voir toutes les rubriques-->
-                        <li style="list-style: none;padding:2px"><a class="col-lg-6 col-sm-6" href="/librecoach/{{ annonce.id }}/">{{ annonce.titre_annonce }}</a>
-                        <a style="margin: 0px 15px 0px 15px;" class="btn btn-default" href="{% url 'librecoach:annonce-coach-modifier' annonce.id %}">modifier</a>
-                        <form style="display:inline" action="{% url 'librecoach:annonce-supprimer2' annonce.id %}" method="post">
-                            {% csrf_token %}
-                            <input type="hidden" name="annonce_id" value="{{ annonce.id }}">
-                            <button onclick="return confirm('Etes vous sure de supprimer l\'annonce \'{{annonce.titre_annonce}}\'?')" class="btn btn-default" type="submit">supprimer</button>
-                        </form><span style="padding-left:8%;">{{annonce.pris_en_charge}}</span>
-                        </li>
+                    <table class="table table-striped">
+                        <thead><tr><th>N°annonce</th><th>Titre annonce</th><th>Pris en charge</th><th>Option</tr></thead>
+                        <tbody>
+
+                        {% for annonce in user.annonce_set.all %}
+                        <tr> <th scope="row">{{ annonce.id }}</th> <td><a class="col-lg-6 col-sm-6" href="/librecoach/{{ annonce.id }}/">{{ annonce.titre_annonce }}</a></td> <td>{{ annonce.pris_en_charge }}</td> <td><a style="margin: 0px 15px 0px 15px;" class="btn btn-default" href="{% url 'librecoach:annonce-coach-modifier' annonce.id %}">modifier</a>
+                                    <form style="display:inline" action="{% url 'librecoach:annonce-supprimer2' annonce.id %}" method="post">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="annonce_id" value="{{ annonce.id }}">
+                                        <button onclick="return confirm('Etes vous sure de supprimer l\'annonce \'{{annonce.titre_annonce}}\'?')" class="btn btn-default" type="submit">supprimer</button>
+                                    </form></td>
+                                </tr>
                         {% endfor %}
-                    </ul>
+
+                        </tbody>
+                    </table>
 
                 </div>
             </div>

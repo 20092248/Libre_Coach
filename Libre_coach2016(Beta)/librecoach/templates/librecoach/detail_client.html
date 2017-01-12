@@ -37,21 +37,20 @@
                     <div class="clearfix"></div>
                     <h2 class="section-heading">Annonces postés par {{user.username}}</h2>
 
-                    <ul>
-
-                        <li style="list-style: none;padding:2px">pris en charge<span class="col-lg-10 col-sm-10">Titre</span></li>
+                    <table class="table table-striped">
+                        <thead><tr><th>N°annonce</th><th>Titre annonce</th><th>Pris en charge</th><th>Option</tr></thead>
+                        <tbody>
                         {% for annonce in user.annonce_set.all %}
-                        <li style="list-style: none;padding:2px"><a class="col-lg-6 col-sm-6" href="/librecoach/{{ annonce.id }}/">{{ annonce.titre_annonce }}</a>
-                        <a style="margin: 0px 15px 0px 15px;" class="btn btn-default" href="{% url 'librecoach:annonce-modifier' annonce.id %}">modifier</a>
-                        <form style="display:inline" action="{% url 'librecoach:annonce-supprimer' annonce.id %}" method="post">
-                            {% csrf_token %}
-                            <input type="hidden" name="annonce_id" value="{{ annonce.id }}">
-                            <button onclick="return confirm('Etes vous sure de supprimer l\'annonce \'{{annonce.titre_annonce}}\'?')" class="btn btn-default" type="submit">supprimer</button>
-                        </form><span style="padding-left:8%;">{{annonce.pris_en_charge}}</span>
-                        </li>
-
+                        <tr> <th scope="row">{{ annonce.id }}</th> <td><a class="col-lg-6 col-sm-6" href="/librecoach/{{ annonce.id }}/">{{ annonce.titre_annonce }}</a></td> <td>{{ annonce.pris_en_charge }}</td> <td><a style="margin: 0px 15px 0px 15px;" class="btn btn-default" href="{% url 'librecoach:client-modifier' user.id %}">modifier</a>
+                                    <form style="display:inline" action="{% url 'librecoach:annonce-supprimer' annonce.id %}" method="post">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="annonce_id" value="{{ annonce.id }}">
+                                        <button onclick="return confirm('Etes vous sure de supprimer l\'annonce \'{{annonce.titre_annonce}}\'?')" class="btn btn-default" type="submit">supprimer</button>
+                                    </form></td>
+                                </tr>
                         {% endfor %}
-                    </ul>
+                        </tbody>
+                    </table>
 
                 </div>
             </div>

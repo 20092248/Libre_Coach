@@ -40,11 +40,13 @@ urlpatterns = [
     url(r'^administrateur/coach/$', views.CoachFormView.as_view(success_url='../'), name='admin-coach'),
     url(r'^administrateur/client/$', views.UserFormViewAdm.as_view(), name='admin-client'),
     # / librecoach/annonce/2/
-    url(r'^administrateur/coach/(?P<pk>[0-9]+)/$', views.UpdateCoachFormView.as_view(), name='coach-modifier'),
+    url(r'^administrateur/coach/(?P<pk>[0-9]+)/$', views.UpdateCoachFormView.as_view(success_url = '../../../'), name='coach-modifier'),
     # / librecoach/annonce/2/supprimer
     url(r'^administrateur/coach/(?P<pk>[0-9]+)/supprimer/$', views.DeleteCoachFormView.as_view(success_url='../../..'), name='coach-supprimer'),
     # / librecoach/client/liste/
     url(r'^administrateur/client/liste/$', views.ClientListView.as_view(), name='client-liste'),
+    # / librecoach/coach/liste/
+    url(r'^administrateur/coach/liste/$', views.CoachListView.as_view(), name='coach-liste'),
     # / librecoach/client/2/
     url(r'^administrateur/client/(?P<pk>[0-9]+)/$', views.UpdateClientFormView.as_view(success_url = '../liste/'), name='client-modifier'),
     # / librecoach/client/2/supprimer

@@ -28,26 +28,25 @@
 
         <div class="container">
             <div class="row">
-                <div class="col-lg-10 col-sm-10">
-                    <a class="btn btn-default btn-lg" href="client">Creer un coach</a> - <a class="btn btn-default btn-lg" href="client/liste">Voir les clients</a><br><br>
-                    <p>Liste des coachs :</p>
+                <div class="col-lg-11 col-sm-11">
+                    <a class="btn btn-default btn-lg" href="client">Creer un coach</a> - <a class="btn btn-default btn-lg" href="client/liste">Voir les clients</a> - <a class="btn btn-default btn-lg" href="coach/liste">Voir les informations personnelles coachs</a><br><br>
+                    <h3>Liste des coachs :</h3><br>
 
-                    <ul>
+                    <table class="table table-striped">
+                        <thead><tr><th>Id</th><th>Username</th><th>First Name</th><th>Last Name</th><th>Option</tr></thead>
+                        <tbody>
                         {% for coach in object_list %}
-                        <li style="list-style: none;padding:2px"><a class="col-lg-6 col-sm-6" href="{{coach.id}}">{{ coach.user }}</a>
-                        <a style="margin: 0px 15px 0px 15px;" class="btn btn-default" href="{% url 'librecoach:coach-modifier' coach.id %}">modifier</a>
-                        <form style="display:inline" action="{% url 'librecoach:coach-supprimer' coach.id %}" method="post">
+                                <tr> <th scope="row">{{ coach.id }}</th> <td>{{ coach.user }}</td> <td>{{ coach.user.first_name }}</td> <td>{{ coach.user.last_name }}</td> <td><a style="margin: 0px 15px 0px 15px;" class="btn btn-default" href="{% url 'librecoach:coach-modifier' coach.id %}">modifier rubrique</a><form style="display:inline" action="{% url 'librecoach:coach-supprimer' coach.id %}" method="post">
                             {% csrf_token %}
                             <input type="hidden" name="delete_id" value="{{ coach.id }}">
                             <button onclick="return confirm('Etes vous sure de supprimer le coach \'{{coach.user}}\'?')" class="btn btn-default" type="submit">supprimer</button>
-                        </form>
-                        </li>
+                        </form></td> </tr>
                         {% endfor %}
-                    </ul>
-
+                        </tbody>
+                    </table>
+                    <a class="btn btn-lg" style="float:right" href="../">Retour Accueil</a>
                 </div>
             </div>
-
         </div>
         <!-- /.container -->
 

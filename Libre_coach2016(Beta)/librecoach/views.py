@@ -248,6 +248,7 @@ class CoachFormView(CreateView):
 class UpdateCoachFormView(UpdateView):
 	model = Coach
 	fields = '__all__'
+	success_url = '../../../'
 
 class DeleteCoachFormView(DeleteView):
 	model = Coach
@@ -258,6 +259,12 @@ class ClientListView(generic.ListView):
 		template_name = 'librecoach/user_list.html'
 		def get_queryset(self):
 			return User.objects.filter(is_staff='False')
+
+class CoachListView(generic.ListView):
+		model = User
+		template_name = 'librecoach/coach_list.html'
+		def get_queryset(self):
+			return User.objects.filter(is_staff='True')
 
 class UpdateClientFormView(UpdateView):
 	model = User
