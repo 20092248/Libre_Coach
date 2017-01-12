@@ -1,5 +1,6 @@
-<li>
+
     {% if user.is_active%}
+<li>
     <div class="dropdown">
       <button style="padding-top: 15px;padding-bottom: 15px;font-weight: bold;width:99%" class="btn btn-success dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         {{ user.username }}
@@ -10,7 +11,10 @@
             <li><a href="{% url 'librecoach:accueil' %}">Se deconnecter</a></li>
         </ul>
     </div>
+</li>
+<li style="background: #c9302c; border-radius: 5px; margin-left: 5px;"><a class="btn btn-danger" href="{% url 'librecoach:accueil' %}"><span style="color:white">Se deconnecter</span></a></li>
     {% else %}
+<li>
     <div class="dropdown">
       <button style="padding-top: 15px;padding-bottom: 15px;width:99%" class="btn btn-success dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         Se Connecter
@@ -30,5 +34,6 @@
         </form>
       </ul>
     </div>
-    {% endif %}
 </li>
+    {% endif %}
+

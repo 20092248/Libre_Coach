@@ -76,15 +76,15 @@
 
                           </button>
                           <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                            <li><a href="{% url 'librecoach:annonce-ajouter' %}">Ajouter une annonce</a></li>
+                            <li><a href="{% url 'librecoach:annonce-ajouter' %}"><i class="glyphicon glyphicon-plus"></i> Ajouter une annonce</a></li>
 
                           </ul>
                         </div>
                         {% else %}
                     </li>
-                    <li>
+                    <li style="background: #2e6da4; border-radius: 5px; margin-right: 10px;">
                         <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
-                        <a class="btn btn-primary" href="{% url 'librecoach:creer-compte' %}" role="button" style="color:#ccc;margin-right: 10px;e">S'inscrire</a>
+                        <a class="btn btn-primary" href="{% url 'librecoach:creer-compte' %}" role="button" style="color:#ccc;">S'inscrire</a>
                     </li>
                         {% endif %}
                     {% include 'librecoach/connexion/login.html' %}
