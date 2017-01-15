@@ -32,10 +32,10 @@
                     <h2>Informations personnelles des coachs :</h2><br>
 
                     <table class="table table-striped">
-                        <thead><tr><th>Id</th><th>Username</th><th>First Name</th><th>Last Name</th><th>Option</tr></thead>
+                        <thead><tr><th>Id</th><th>Username</th><th>First Name</th><th>Last Name</th><th>E-mail</th><th>Option</tr></thead>
                         <tbody>
                         {% for user in object_list %}
-                                <tr> <th scope="row">{{ user.id }}</th> <td>{{ user.username }}</td> <td>{{ user.first_name }}</td> <td>{{ user.last_name }}</td> <td><a style="margin: 0px 15px 0px 15px;" class="btn btn-default" href="{% url 'librecoach:client-modifier' user.id %}"><i class="glyphicon glyphicon-pencil"></i> modifier</a>
+                                <tr> <th scope="row">{{ user.id }}</th> <td>{{ user.username }}</td> <td>{{ user.first_name }}</td> <td>{{ user.last_name }}</td> <td>{{ user.email }}</td> <td><a style="margin: 0px 15px 0px 15px;" class="btn btn-default" href="{% url 'librecoach:client-modifier' user.id %}"><i class="glyphicon glyphicon-pencil"></i> modifier</a>
                                     <form style="display:inline" action="{% url 'librecoach:client-supprimer' user.id %}" method="post">
                                         {% csrf_token %}
                                         <input type="hidden" name="delete_id" value="{{ user.id }}">

@@ -3,6 +3,10 @@ from django.contrib.admin.views.decorators import staff_member_required
 from django.contrib.auth import authenticate
 from django.contrib.auth.models import User
 from django import forms
+from django.core.mail import send_mail
+
+from SiteWeb import settings
+
 
 class CreateAccountform(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput)
@@ -40,8 +44,19 @@ class Loginform(forms.Form):
                 raise ValueError("Mot de passe incorrect!")
         return super(Loginform, self).clean(*args, **kwargs)
 
-class Contactform(forms.Form):
+class ContactForm(forms.Form):
 
-    full_name = forms.CharField(required=True)
-    email = forms.EmailField(required=True)
-    message = forms.CharField(required=True,widget=forms.Textarea)
+    full_name = forms.CharField()
+    email = forms.CharField()
+    message = forms.CharField(widget=forms.Textarea)
+
+    def send_email(self):
+        # send email using the self.cleaned_data dictionary
+
+        form_full_name = self.cleaned_data.get('full_name')
+        form_message = self.cleaned_data.get('message')
+        form_email = self.cleaned_data.get('email')
+
+
+
+        pass

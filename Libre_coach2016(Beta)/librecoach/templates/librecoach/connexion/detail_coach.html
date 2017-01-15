@@ -25,7 +25,7 @@
             <div class="row">
                 <div class="col-lg-4 col-sm-4">
                     <h2 class="section-heading">Information:<br>Detail coach</h2>
-                    <img style="width:200px;height:200px" src="{{user.coach.coach_image.url}}" alt="..." class="img-thumbnail"><br>
+                    <img style="width:auto;height:200px" src="{{user.coach.coach_image.url}}" alt="..." class="img-thumbnail"><br>
                     <br><p class="lead">Nom : {{ user.first_name }}</p>
                     <p class="lead">Prenom : {{ user.last_name }}</p>
                     <p class="lead">Email : {{ user.email }}</p>
@@ -66,7 +66,7 @@
             <div class="row">
                 <div class="col-lg-8 col-sm-8">
                     <p>Cette page n'est reservé qu'à l'administrateur et aux membres personnels du site.</p><br>
-                    <a href="{% url 'librecoach:index' %}">retour sur la page d'accueil.</a>
+                    <a href="{% url 'librecoach:index' %}">Retour sur la page d'accueil.</a>
                 </div>
             </div>
 

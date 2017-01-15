@@ -11,10 +11,10 @@ from django.shortcuts import render,redirect
 from django.contrib.auth import authenticate, login
 from django.views.generic import View
 from django.views import generic
-from .forms import CreateAccountform,Loginform, CreateAccountformAdm
+from .forms import CreateAccountform,Loginform, CreateAccountformAdm, ContactForm
 from django import forms
 from django.shortcuts import render, render_to_response
-from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView, FormView
 from django.core.urlresolvers import reverse_lazy, reverse
 from django.http import HttpResponseRedirect
 from django.contrib import auth
@@ -275,3 +275,16 @@ class UpdateClientFormView(UpdateView):
 class DeleteClientFormView(DeleteView):
 	model = User
 	success_url = '../../../'
+
+
+class ContactMailView(FormView):
+	template_name = 'librecoach/contact_mail.html'
+	form_class = ContactForm
+	success_url = '../'
+
+	def form_valid(self, form):
+		# This method is called when valid form data has been POSTed.
+		# It should return an HttpResponse.
+		form.send_mail()
+
+		return super(ContactMailView, self).form_valid(form)

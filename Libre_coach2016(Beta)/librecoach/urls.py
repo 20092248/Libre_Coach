@@ -9,6 +9,9 @@ app_name= 'librecoach'
 urlpatterns = [
     url(r'^$', views.IndexView.as_view(), name='index'),
 
+    # ____________________mail___________________#
+    url('^mail/$', views.ContactMailView.as_view(), name='mail'),
+
     # ____________________FAQ___________________#
     url('^faq/$', views.FaqView.as_view(), name='faq'),
 
