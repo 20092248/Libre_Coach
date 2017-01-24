@@ -1,5 +1,23 @@
     {% load static %}
     {% include 'librecoach/corp/header.html' %}
+    <script>
+    $(document).ready(function () {
+    "use strict";
+    // Click on li item will change input text value
+    $('a').click(function () {
+        $('#annonce').val($(this).html());
+    });
+
+    $('#annonce').change(function () {
+        var input_content = $.trim($(this).val());
+        if (!input_content) {
+            $('tr').show();
+        } else {
+            $('tbody>tr').show().not(':contains(' + input_content  + ')').hide();
+        }
+    });
+});
+    </script>
 
     <!-- Header -->
     <a name="accueil"></a>
@@ -31,6 +49,11 @@
                     <p class="lead">Email : {{ user.email }}</p>
                 </div>
                 <div class="col-lg-8 col-sm-6">
+                    <div class="clearfix">
+                        <div class="form-group">
+                          <input style="float:right" type="submit" class="btn btn-default" value="Valider"><input style="width: 45%;float: right;" id="annonce" type="text" class="form-control" placeholder="Rechercher...">
+                        </div>
+                    </div>
                     <h2 class="section-heading">Annonces type : {{user.coach.specialiste}}</h2>
 
                     <table class="table table-striped">

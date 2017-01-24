@@ -30,6 +30,7 @@ urlpatterns = [
     # / librecoach/annonce/2/supprimer
     url(r'annonce/(?P<pk>[0-9]+)/supprimer/$', views.AnnonceDelete.as_view(), name='annonce-supprimer'),
 
+
     # ____________________coach___________________#
     #librecoach/connexion
     url(r'^connexion/$', views.CoachView.as_view(), name='coach-view'),

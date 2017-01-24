@@ -1,6 +1,24 @@
     {% load static %}
     {% include 'librecoach/corp/header.html' %}
 
+    <script>
+    $(document).ready(function () {
+    "use strict";
+    // Click on li item will change input text value
+    $('a').click(function () {
+        $('#annonce').val($(this).html());
+    });
+
+    $('#annonce').change(function () {
+        var input_content = $.trim($(this).val());
+        if (!input_content) {
+            $('tr').show();
+        } else {
+            $('tbody>tr').show().not(':contains(' + input_content  + ')').hide();
+        }
+    });
+});
+    </script>
     <!-- Header -->
     <a name="accueil"></a>
     <div class="intro-header" style="background:bisque">
@@ -34,14 +52,19 @@
                 </div>
                 <div class="col-lg-8 col-sm-6">
                     <hr class="section-heading-spacer">
-                    <div class="clearfix"></div>
+                    <div class="clearfix">
+                        <div class="form-group">
+                          <input style="float:right" type="submit" class="btn btn-default" value="Valider"><input style="width: 40%;float: right;" id="annonce" type="text" class="form-control" placeholder="Rechercher...">
+                        </div>
+                    </div>
                     <h2 class="section-heading">Annonces postés par {{user.username}}</h2>
 
+
                     <table class="table table-striped">
-                        <thead><tr><th>N°annonce</th><th>Titre annonce</th><th>Pris en charge</th><th>Option</tr></thead>
+                        <thead><th>N°annonce</th><th>Titre annonce</th><th>Rubrique</th><th>Pris en charge</th><th>Option</th></thead>
                         <tbody>
                         {% for annonce in user.annonce_set.all %}
-                        <tr> <th scope="row">{{ annonce.id }}</th> <td><a class="col-lg-6 col-sm-6" href="/librecoach/{{ annonce.id }}/">{{ annonce.titre_annonce }}</a></td> <td>{{ annonce.pris_en_charge }}</td> <td><a style="margin: 0px 15px 0px 15px;" class="btn btn-default" href="{% url 'librecoach:client-modifier' user.id %}">modifier</a>
+                        <tr> <td scope="row">{{ annonce.id }}</td> <td><a class="col-lg-6 col-sm-6" href="/librecoach/{{ annonce.id }}/">{{ annonce.titre_annonce }}</a></td> <td>{{ annonce.rubrique }}</td> <td>{{ annonce.pris_en_charge }}</td> <td><a style="margin: 0px 15px 0px 15px;" class="btn btn-default" href="{% url 'librecoach:client-modifier' user.id %}">modifier</a>
                                     <form style="display:inline" action="{% url 'librecoach:annonce-supprimer' annonce.id %}" method="post">
                                         {% csrf_token %}
                                         <input type="hidden" name="annonce_id" value="{{ annonce.id }}">
