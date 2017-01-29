@@ -1,4 +1,5 @@
 from django.core.mail import send_mail
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.http import HttpResponse
 from django.template import Context
 from django.template import loader
@@ -62,11 +63,8 @@ class FaqView(TemplateView):
 class ClientView(generic.ListView):
 		model = User
 		template_name = 'librecoach/detail_client.html'
-
 		def get_queryset(request):
-			return Annonce.objects.all()
-
-
+			return Annonce.objects.all().order_by("-timestamp")
 
 class IndexAdm(generic.ListView):
 		model = Annonce

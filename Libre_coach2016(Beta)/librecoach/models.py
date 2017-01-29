@@ -15,7 +15,7 @@ journee = (
 	('INDISPONIBLE','indisponible'),
     ('MATIN', 'matin'),
     ('APRES-MIDI', 'apres-midi'),
-    ('LA_JOURNEE', 'la_journee'),
+    ('LA JOURNEE', 'la journee'),
 )
 
 class Coach(models.Model):
@@ -28,7 +28,7 @@ class Coach(models.Model):
 
 class Annonce(models.Model):
 
-	username = models.CharField(max_length=30, default='00')
+	username = models.CharField(max_length=30, default='--')
 	nom = models.CharField(max_length=30)
 	prenom = models.CharField(max_length=30)
 	email = models.CharField(max_length=30)

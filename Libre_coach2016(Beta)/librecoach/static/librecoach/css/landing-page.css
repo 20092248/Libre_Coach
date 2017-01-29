@@ -215,3 +215,19 @@ input[type=password] {
     .rating2 a {
     float:none
 }
+
+.paginate_button{
+padding : 5px;
+}
+
+#annonce_list_wrapper,#annonce_list_filter{
+display : inline;
+}
+
+#annonce_list_filter{
+float : right;
+}
+
+a{
+cursor : pointer;
+}

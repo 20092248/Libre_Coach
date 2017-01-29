@@ -6,7 +6,7 @@
     "use strict";
     // Click on li item will change input text value
     $('a').click(function () {
-        $('#annonce').val($(this).html());
+       // $('#annonce').val($(this).html());
     });
 
     $('#annonce').change(function () {
@@ -17,7 +17,9 @@
             $('tbody>tr').show().not(':contains(' + input_content  + ')').hide();
         }
     });
+
 });
+
     </script>
     <!-- Header -->
     <a name="accueil"></a>
@@ -60,7 +62,7 @@
                     <h2 class="section-heading">Annonces postés par {{user.username}}</h2>
 
 
-                    <table class="table table-striped">
+                    <table id="annonce_list" class="table table-striped">
                         <thead><th>N°annonce</th><th>Titre annonce</th><th>Rubrique</th><th>Pris en charge</th><th>Option</th></thead>
                         <tbody>
                         {% for annonce in user.annonce_set.all %}
@@ -85,4 +87,3 @@
     <!-- /.content-section-a -->
 
     {% include 'librecoach/corp/footer.html' %}
-

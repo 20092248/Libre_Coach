@@ -2,22 +2,9 @@
     {% include 'librecoach/corp/header.html' %}
 
     <script>
-        $(document).ready(function () {
-        "use strict";
-        // Click on li item will change input text value
-        $('a').click(function () {
-            $('#annonce').val($(this).html());
-        });
-
-        $('#annonce').change(function () {
-            var input_content = $.trim($(this).val());
-            if (!input_content) {
-                $('tr').show();
-            } else {
-                $('tbody>tr').show().not(':contains(' + input_content  + ')').hide();
-            }
-        });
-    });
+        $(document).ready(function() {
+    $('table#annonce_list').DataTable();
+} );
     </script>
 
     <!-- Header -->
@@ -49,10 +36,13 @@
                 <div class="col-lg-11 col-sm-11">
                     <a class="btn btn-default btn-lg" href="client">Creer un coach</a> - <a class="btn btn-default btn-lg" href="client/liste">Voir les clients</a> - <a class="btn btn-default btn-lg" href="coach/liste">Voir les informations personnelles coachs</a><br><br>
                     <h3>Liste des coachs :
-                        <input style="float:right" type="submit" class="btn btn-default" value="Valider"><input style="width: 30%;float: right;" id="annonce" type="text" class="form-control" placeholder="Rechercher...">
-                       </h3>
-                    <table class="table table-striped">
-                        <thead><tr><th>Id</th><th>Username</th><th>First Name</th><th>Last Name</th><th>Specialité</th><th>Option</tr></thead>
+                         </h3>
+                    <table id="annonce_list" class="table table-striped">
+                        <thead style="cursor : pointer"><tr><th>Id<img src="https://image.freepik.com/icones-gratuites/fleches-haut-et-bas-triangles_318-53110.jpg" width="13px" style="float:right"/></th><th>Username<img src="https://image.freepik.com/icones-gratuites/fleches-haut-et-bas-triangles_318-53110.jpg" width="15px" style="float:right"/></th>
+                            <th>First Name<img src="https://image.freepik.com/icones-gratuites/fleches-haut-et-bas-triangles_318-53110.jpg" width="13px" style="float:right"/></th>
+                            <th>Last Name<img src="https://image.freepik.com/icones-gratuites/fleches-haut-et-bas-triangles_318-53110.jpg" width="13px" style="float:right"/></th>
+                            <th>Specialité<img src="https://image.freepik.com/icones-gratuites/fleches-haut-et-bas-triangles_318-53110.jpg" width="13px" style="float:right"/></th>
+                            <th>Option</tr></thead>
                         <tbody>
                         {% for coach in object_list %}
                                 <tr> <th scope="row">{{ coach.id }}</th> <td>{{ coach.user }}</td> <td>{{ coach.user.first_name }}</td> <td>{{ coach.user.last_name }}</td> <td>{{ coach.specialiste }}</td> <td><a style="margin: 0px 15px 0px 15px;" class="btn btn-default" href="{% url 'librecoach:coach-modifier' coach.id %}"><i class="glyphicon glyphicon-pencil"></i> modifier specialité/image</a><form style="display:inline" action="{% url 'librecoach:coach-supprimer' coach.id %}" method="post">
@@ -63,6 +53,7 @@
                         {% endfor %}
                         </tbody>
                     </table>
+
                     <a class="btn btn-lg" style="float:right" href="../">Retour Accueil</a>
                 </div>
             </div>
@@ -91,3 +82,5 @@
     {% endif %}
 
     {% include 'librecoach/corp/footer.html' %}
+
+
