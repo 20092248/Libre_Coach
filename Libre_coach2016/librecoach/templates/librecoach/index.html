@@ -1,0 +1,147 @@
+    {% load static %}
+    {% include 'librecoach/corp/header.html' %}
+
+    <!-- Header -->
+    <a name="accueil"></a>
+    <div class="intro-header">
+        <div class="container">
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="intro-message">
+                        <h1>Libre Coach</h1>
+                        <h3>Un petit clic pour découvrir toutes les fonctionnalités du site!</h3>
+                        <hr class="intro-divider">
+                        <ul class="list-inline intro-social-buttons">
+                            <li>
+                                <a href="#presentation" class="btn btn-default btn-lg"><i class="glyphicon glyphicon-bookmark"></i> <span class="network-name">Présentation</span></a>
+                            </li>
+                            <li>
+                                <a href="#services" class="btn btn-default btn-lg"><i class="glyphicon glyphicon-ok"></i> <span class="network-name"> Services</span></a>
+                            </li>
+                            <li>
+                                <a href="#contact" class="btn btn-default btn-lg"><i class="glyphicon glyphicon-envelope"></i> <span class="network-name">Contact</span></a>
+                            </li>
+                            {% if user.is_active %}
+                            <li>
+                                <a href="client/{{ user.id }}/" class="btn btn-default btn-lg"><i class="glyphicon glyphicon-user"></i> <span class="network-name">Voir profil</span></a>
+                            </li>
+                            <li>
+                                <a href="{% url 'librecoach:annonce-ajouter' %}" class="btn btn-default btn-lg"><i class="glyphicon glyphicon-plus"></i> <span class="network-name">Ajouter une annonce</span></a>
+                            </li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!-- /.container -->
+
+    </div>
+    <!-- /.intro-header -->
+
+    <!-- Page Content -->
+
+	<a  name="presentation"></a>
+    <div class="content-section-a">
+
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-sm-6">
+                    <hr class="section-heading-spacer">
+                    <div class="clearfix"></div>
+                    <h2 class="section-heading">LibreCoach:<br>Bienvenue sur notre nouveau site</h2>
+                    <p class="lead">Trouve sur notre plateforme tout ce qu’il te faut pour réaliser tes projets pro comme perso… L’esprit “LibreCoach” en plus !
+                    <br><br>Un petit clic pour découvrir tous les événements dans ta région !</p>
+                </div>
+                <div class="col-lg-5 col-lg-offset-1 col-sm-6">
+                    <img class="img-responsive" src="{% static 'librecoach/images/ipad.png' %}" alt="">
+                </div>
+            </div>
+
+        </div>
+        <!-- /.container -->
+
+    </div>
+    <!-- /.content-section-a -->
+
+    <a  name="services"></a>
+    <div class="content-section-b">
+
+        <div class="container">
+
+            <div class="row">
+                <div class="col-lg-5 col-lg-offset-1 col-sm-push-6  col-sm-6">
+                    <hr class="section-heading-spacer">
+                    <div class="clearfix"></div>
+                    <h2 class="section-heading">Nos services LibreCoach</h2>
+                    <p class="lead"><i class="glyphicon glyphicon-ok"></i> Ajouter une annonce pour votre projet</p>
+                    <p class="lead"><i class="glyphicon glyphicon-ok"></i> Vous mettre en relation avec un coach professionnel</p>
+                    <p class="lead"><i class="glyphicon glyphicon-ok"></i> Avancons ensemble main dans la main</p>
+                    <p class="lead"><i class="glyphicon glyphicon-ok"></i> Profiter du coup de pouce que l'on vous porte</p>
+                </div>
+                <div class="col-lg-5 col-sm-pull-6  col-sm-6">
+                    <img class="img-responsive" src="{% static 'librecoach/images/banner-bg.png' %}" alt="">
+                </div>
+            </div>
+
+        </div>
+        <!-- /.container -->
+
+    </div>
+    <!-- /.content-section-b -->
+
+	<a  name="contact"></a>
+    <div class="banner">
+
+        <div class="container">
+
+            <div class="row">
+                <div class="col-lg-6">
+                    <h2>Quand pensez vous du site</h2>
+
+                    <div class="rating rating2" style="width:50%;margin: auto"><!--
+                        --><a href="#5" title="5 étoiles" style="font-size: 50px;text-decoration:none">★</a><!--
+                        --><a href="#4" title="4 étoiles" style="font-size: 50px;text-decoration:none">★</a><!--
+                        --><a href="#3" title="3 étoiles" style="font-size: 50px;text-decoration:none">★</a><!--
+                        --><a href="#2" title="2 étoiles" style="font-size: 50px;text-decoration:none">★</a><!--
+                        --><a href="#1" title="1 étoile" style="font-size: 50px;text-decoration:none">★</a>
+                    </div>
+
+                </div>
+                <div class="col-lg-6">
+                        <h2 style="float:right; padding-bottom:10px">Nos réseaux sociaux:</h2>
+                        <ul class="list-inline banner-social-buttons">
+                            <li>
+                                <a href="https://twitter.com/SBootstrap" class="btn btn-default btn-lg"><i class="fa fa-twitter fa-fw"></i> <span class="network-name">Twitter</span></a>
+                            </li>
+                            <li>
+                                <a href="https://github.com/IronSummitMedia/startbootstrap" class="btn btn-default btn-lg"><i class="fa fa-facebook fa-fw"></i> <span class="network-name">Facebook</span></a>
+                            </li>
+                            <li>
+                                <a href="#" class="btn btn-default btn-lg"><i class="fa fa-google-plus fa-fw"></i> <span class="network-name">Google +</span></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!-- /.container -->
+
+    </div>
+    <!-- /.banner -->
+
+    {% include 'librecoach/corp/footer.html' %}
+
+ <!--<ul><p>Toutes les annonces non prise en charge :</p>
+    {% for annonce in annonces_client %}
+    <li><a href="/librecoach/{{ annonce.id }}/">{{ annonce.titre_annonce }}</a></li>
+    <form action="{% url 'librecoach:annonce-supprimer' annonce.id %}" method="post">
+        {% csrf_token %}
+        <input type="hidden" name="annonce_id" value="{{ annonce.id }}">
+        <button type="submit">supprimer</button>
+    </form>
+    {% endfor %}
+</ul>-->
