@@ -1,6 +1,12 @@
     {% load static %}
     {% include 'librecoach/corp/header.html' %}
 
+    <script>
+        $(document).ready(function() {
+    $('table#annonce_list').DataTable();
+} );
+    </script>
+
     <!-- Header -->
     <a name="accueil"></a>
     <div class="intro-header" style="background:bisque">
