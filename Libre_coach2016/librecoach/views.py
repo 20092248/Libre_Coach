@@ -1,26 +1,16 @@
-from django.core.mail import send_mail
-from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
-from django.http import HttpResponse
-from django.template import Context
-from django.template import loader
 from django.views.generic import TemplateView
 from rest_framework.views import APIView
 from rest_framework.response import Response
-
-from SiteWeb import settings
-from librecoach import models
-from librecoach.models import Stock, Annonce, User, Coach
+from librecoach.models import Annonce, User, Coach
 from librecoach.serializers import AnnonceSerializer, UserSerializer, CoachSerializer
-from django.shortcuts import render,redirect
+from django.shortcuts import redirect
 from django.contrib.auth import authenticate, login
 from django.views.generic import View
 from django.views import generic
 from .forms import CreateAccountform,Loginform, CreateAccountformAdm, ContactForm
-from django import forms
-from django.shortcuts import render, render_to_response
+from django.shortcuts import render
 from django.views.generic.edit import CreateView, UpdateView, DeleteView, FormView
-from django.core.urlresolvers import reverse_lazy, reverse
-from django.http import HttpResponseRedirect
+from django.core.urlresolvers import reverse_lazy
 from django.contrib import auth
 
 class IndexView(generic.ListView):
@@ -88,7 +78,8 @@ class AnnonceUpdate(UpdateView):
 
 class AnnonceUpdate2(UpdateView):
 	model = Annonce
-	fields = ['pris_en_charge']
+	template_name = 'librecoach/annonce_form2.html'
+	fields = ['nom','prenom','email','telephone','titre_annonce','descriptif_annonce','pris_en_charge']
 
 class AnnonceDelete(DeleteView):
 	model = Annonce

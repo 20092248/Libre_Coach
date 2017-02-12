@@ -1,9 +1,6 @@
-from django.contrib.admin import widgets
-from django.contrib.admin.views.decorators import staff_member_required
 from django.contrib.auth import authenticate
 from django.contrib.auth.models import User
 from django import forms
-from django.core.mail import send_mail
 
 from SiteWeb import settings
 

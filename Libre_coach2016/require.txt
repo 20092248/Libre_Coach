@@ -1,0 +1,5 @@
+codegen==1.0
+Django==1.10.3
+djangorestframework==3.5.3
+fields==5.0.0
+patterns==0.3

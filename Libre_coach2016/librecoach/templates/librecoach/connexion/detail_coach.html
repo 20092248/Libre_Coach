@@ -3,9 +3,9 @@
     <script>
     $(document).ready(function () {
     "use strict";
-    // Click on li item will change input text value
+    // Click on table item will change input text value
     $('a').click(function () {
-        $('#annonce').val($(this).html());
+        //$('#annonce').val($(this).html());
     });
 
     $('#annonce').change(function () {
@@ -57,11 +57,11 @@
                     <h2 class="section-heading">Annonces type : {{user.coach.specialiste}}</h2>
 
                     <table class="table table-striped">
-                        <thead><tr><th>N°annonce</th><th>Titre annonce</th><th>Pris en charge</th><th>Option</tr></thead>
+                        <thead><tr><th>N°annonce</th><th>Titre annonce</th><th>Rubrique</th><th>Pris en charge</th><th>Option</tr></thead>
                         <tbody>
 
-                        {% for annonce in user.annonce_set.all %}
-                        <tr> <th scope="row">{{ annonce.id }}</th> <td><a class="col-lg-6 col-sm-6" href="/librecoach/{{ annonce.id }}/">{{ annonce.titre_annonce }}</a></td> <td>{{ annonce.pris_en_charge }}</td> <td><a style="margin: 0px 15px 0px 15px;" class="btn btn-default" href="{% url 'librecoach:annonce-coach-modifier' annonce.id %}">modifier</a>
+                        {% for annonce in user.coach.annonce_set.all %}
+                        <tr> <th scope="row">{{ annonce.id }}</th> <td><a class="col-lg-6 col-sm-6" href="/librecoach/{{ annonce.id }}/">{{ annonce.titre_annonce }}</a></td> <td>{{annonce.rubrique}}</td> <td>{{ annonce.pris_en_charge }}</td> <td><a style="margin: 0px 15px 0px 15px;" class="btn btn-default" href="{% url 'librecoach:annonce-coach-modifier' annonce.id %}">modifier</a>
                                     <form style="display:inline" action="{% url 'librecoach:annonce-supprimer2' annonce.id %}" method="post">
                                         {% csrf_token %}
                                         <input type="hidden" name="annonce_id" value="{{ annonce.id }}">

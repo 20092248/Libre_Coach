@@ -1,7 +1,5 @@
 from django.conf.urls import url
 from rest_framework.urlpatterns import format_suffix_patterns
-from SiteWeb import settings
-from django.conf.urls.static import static
 from . import views
 
 app_name= 'librecoach'
@@ -68,7 +66,3 @@ urlpatterns = [
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)
-
-#if settings.DEBUG:
-#    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_URL)
-#    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_URL)

@@ -1,5 +1,5 @@
 from datetime import datetime
-from django.contrib.auth.models import User, AbstractUser
+from django.contrib.auth.models import User
 from django.db import models
 from django.core.urlresolvers import reverse
 
@@ -37,7 +37,7 @@ class Annonce(models.Model):
 	ville = models.CharField(max_length=30)
 	code_postal = models.CharField(max_length=30)
 
-	#user qui se cache dans rubrique
+	#coach qui se cache dans rubrique
 	rubrique = models.ForeignKey(Coach, blank=True, null=True)
 
 	titre_annonce = models.CharField(max_length=100)
