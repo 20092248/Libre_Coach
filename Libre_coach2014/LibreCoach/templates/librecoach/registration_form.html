@@ -1,0 +1,12 @@
+<h3>Inscription nouveau compte</h3>
+{% if error_message %}
+    <p><strong>{{ error_message }}</strong></p>
+{% endif %}
+<form role="" action="" method="post">
+    {% csrf_token %}
+    {% include 'librecoach/form_template.html' %}
+    <li role="separator" class="divider"></li>
+    <div>
+        <button type="submit">ajouter compte</button>
+    </div>
+</form>

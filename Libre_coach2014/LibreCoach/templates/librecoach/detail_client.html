@@ -1,0 +1,17 @@
+{{user.id}}
+{{annonce.id}}
+
+<ul><p>Toutes les annonces non prise en charge :</p>
+
+    {% for annonce in object_list %}
+
+    <li><a href="/librecoach/{{ annonce.id }}/">{{ annonce.titre_annonce }}</a></li>
+    <form action="{% url 'librecoach:annonce-supprimer' annonce.id %}" method="post">
+        {% csrf_token %}
+        <input type="hidden" name="annonce_id" value="{{ annonce.id }}">
+        <button type="submit">supprimer</button>
+    </form>
+
+    {% endfor %}
+</ul>
+

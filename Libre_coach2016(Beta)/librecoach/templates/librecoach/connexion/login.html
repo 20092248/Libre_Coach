@@ -1,0 +1,39 @@
+
+    {% if user.is_active%}
+<li>
+    <div class="dropdown">
+      <button style="padding-top: 15px;padding-bottom: 15px;font-weight: bold;width:99%" class="btn btn-success dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        {{ user.username }}
+        <span class="caret"></span>
+      </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+            <li><a href="{% url 'librecoach:detail-client' user.id %}">Voir profil</a></li>
+            <li><a href="{% url 'librecoach:accueil' %}">Se deconnecter</a></li>
+        </ul>
+    </div>
+</li>
+<li style="background: #c9302c; border-radius: 5px; margin-left: 5px;"><a class="btn btn-danger" href="{% url 'librecoach:accueil' %}"><span style="color:white; font-weight: bold;">Se deconnecter</span></a></li>
+    {% else %}
+<li>
+    <div class="dropdown">
+      <button style="padding-top: 15px;padding-bottom: 15px;width:99%" class="btn btn-success dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Se Connecter
+        <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu" aria-labelledby="dropdownMenu2" style="padding-right: 10px;padding-left: 10px;">
+        {% if error_message %}
+            <p><strong>{{ error_message }}</strong></p>
+        {% endif %}
+        <form role="" action="" method="post">
+            {% csrf_token %}
+            {% include 'librecoach/form_template.html' %}
+            <li role="separator" class="divider"></li>
+            <div>
+                <button class="btn btn-default" type="submit">Se connecter</button>
+            </div>
+        </form>
+      </ul>
+    </div>
+</li>
+    {% endif %}
+
